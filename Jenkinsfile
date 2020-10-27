@@ -19,7 +19,7 @@ node {
 
     stage('Deploy') { 
         sshagent(credentials : ['jenkins-deployer']) {
-            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 docker images && mkdir /tmp/jenkins'
+            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 "docker images && mkdir /tmp/jenkins"'
             //sh 'ssh -v user@hostname.com'
             //sh 'scp ./source/filename user@hostname.com:/remotehost/target'
         }
