@@ -12,13 +12,17 @@ node {
 
     stage('Build and Push Docker Image') {
 
-        def dockerfile = 'Dockerfile' 
-        def customImage = docker.build("budakdigital/wmr:${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}", "-f ./${dockerfile} .") 
+        sh '''
+        docker build -t budakdigital/wmr:wmr-frontend .
+        docker images
+        '''
+        //def dockerfile = 'Dockerfile' 
+        //def customImage = docker.build("budakdigital/wmr:${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}", "-f ./${dockerfile} .") 
  
-        docker.withRegistry('https://registry-1.docker.io', 'budakdigital-dockerhub-credential') {     
-          //customImage.push("${imageTag}")
-            customImage.push("${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}")
-        } 
+        //docker.withRegistry('https://registry-1.docker.io', 'budakdigital-dockerhub-credential') {     
+        //  //customImage.push("${imageTag}")
+        //    customImage.push("${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}")
+        //} 
     }
 
     /*stage('Deploy') {
