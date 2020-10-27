@@ -17,11 +17,11 @@ node {
         } 
     }
 
-    /*stage('Deploy') {
-
-        sh "sed -i \"s/_imageTag/${imageTag}/g\" ${env.WORKSPACE}/k8s/deployment-test.yaml"
-        sh "kubectl config use-context aks-dev"
-        sh "kubectl apply -f ${env.WORKSPACE}/k8s/deployment-test.yaml"
-        
-    }*/
+    stage('Deploy') { 
+        sshagent(credentials : ['jenkins-deployer']) {
+            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 docker images && mkdir /tmp/jenkins'
+            //sh 'ssh -v user@hostname.com'
+            //sh 'scp ./source/filename user@hostname.com:/remotehost/target'
+        }
+    }    
 }
