@@ -2,8 +2,10 @@ node {
   
     stage('Clone Repository') {
 
-        checkout scm
+        //checkout scm
         
+        git branch: 'main', credentialsId: 'budakdigital-github-credential', url: 'git@github.com:budakm/retro-frontend.git'
+
         //sh "git rev-parse --short HEAD > .git/commit-id"
         //imageTag = readFile("${env.WORKSPACE}/.git/commit-id").trim()
     }
@@ -11,11 +13,11 @@ node {
     stage('Build and Push Docker Image') {
 
         def dockerfile = 'Dockerfile' 
-        def customImage = docker.build("budakdigital/wmr:${env.JOB_BASE_NAME}-${$BUILD_NUMBER}", "-f ./${dockerfile} .") 
+        def customImage = docker.build("budakdigital/wmr:${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}", "-f ./${dockerfile} .") 
  
         docker.withRegistry('https://registry-1.docker.io', 'budakdigital-dockerhub-credential') {     
           //customImage.push("${imageTag}")
-            customImage.push("${env.JOB_BASE_NAME}-${$BUILD_NUMBER}")
+            customImage.push("${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}")
         } 
     }
 
