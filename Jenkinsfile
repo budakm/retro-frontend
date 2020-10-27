@@ -13,7 +13,7 @@ node {
         def dockerfile = 'Dockerfile' 
         def customImage = docker.build("budakdigital/wmr:${env.JOB_BASE_NAME}-${$BUILD_NUMBER}", "-f ./${dockerfile} .") 
  
-        docker.withRegistry('', 'budakdigital-dockerhub-credential') {     
+        docker.withRegistry('https://registry-1.docker.io', 'budakdigital-dockerhub-credential') {     
           //customImage.push("${imageTag}")
             customImage.push("${env.JOB_BASE_NAME}-${$BUILD_NUMBER}")
         } 
