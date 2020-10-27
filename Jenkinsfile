@@ -17,11 +17,11 @@ node {
         } 
     }
 
-    stage('Deploy') { 
+    stage('Deploy into 18.132.36.78 / 10.10.1.125') { 
         sshagent(credentials : ['jenkins-deployer']) {
-            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 "docker images && mkdir /tmp/jenkins"'
-            //sh 'ssh -v user@hostname.com'
-            //sh 'scp ./source/filename user@hostname.com:/remotehost/target'
+            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 "docker pull budakdigital/wmr:${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}"'
+            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 "docker stop --name=${env.JOB_BASE_NAME} && docker rm --name=${env.JOB_BASE_NAME} '
+            sh 'ssh -o StrictHostKeyChecking=no jenkins@10.10.1.125 "docker run -d --name=${env.JOB_BASE_NAME} -p 80:80 budakdigital/wmr:${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}"'
         }
     }    
 }
