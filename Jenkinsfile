@@ -1,6 +1,6 @@
 node {
   
-    /*stage('Clone Repository') {
+    stage('Clone Repository') {
 
         checkout scm
         
@@ -14,7 +14,7 @@ node {
         docker.withRegistry('https://registry-1.docker.io', 'budakdigital-dockerhub-credential') {     
             customImage.push("${env.JOB_BASE_NAME}-${env.BUILD_NUMBER}")
         } 
-    }*/
+    }
 
     stage('Deploy into 18.132.36.78 / 10.10.1.125') { 
         sshagent(credentials : ['jenkins-deployer']) {
