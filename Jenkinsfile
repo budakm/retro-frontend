@@ -2,9 +2,9 @@ node {
   
     stage('Clone Repository') {
 
-        //checkout scm
+        checkout scm
         
-        git branch: 'main', credentialsId: 'budakdigital-github-credential', url: 'git@github.com:budakm/retro-frontend.git'
+        //git branch: 'main', credentialsId: 'budakdigital-github-credential', url: 'git@github.com:budakm/retro-frontend.git'
 
         //sh "git rev-parse --short HEAD > .git/commit-id"
         //imageTag = readFile("${env.WORKSPACE}/.git/commit-id").trim()
