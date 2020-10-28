@@ -160,7 +160,7 @@ export default {
     editPermissionRequested: 'runIncommingQueue'
   },
   created () {
-    this.socket = new WebSocket('ws://localhost:46992')
+    this.socket = new WebSocket('ws://18.133.155.146:46992')
     this.socket.onmessage = (e) => {
       try {
         const data = JSON.parse(e.data)
