@@ -7,8 +7,8 @@ node {
     }
 
     stage('Populate Envs') {
-        sh "echo VUE_APP_WEBSOCKET_URI=ws://10.10.1.125:46992 > .env.production"
-        sh "echo VUE_APP_API_URI=http://10.10.1.125:46991 >> .env.production"
+        sh "echo VUE_APP_WEBSOCKET_URI=ws://18.132.36.78:46992 > .env.production"
+        sh "echo VUE_APP_API_URI=http://18.132.36.78:46991 >> .env.production"
     }
 
     stage('Build and Push Docker Image') {
