@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify'
 import './plugins/snack'
 import './plugins/swal'
 
-axios.defaults.baseURL = 'http://18.133.155.146:46991'
+axios.defaults.baseURL = process.env.VUE_APP_API_URI
 
 Vue.config.productionTip = false
 
