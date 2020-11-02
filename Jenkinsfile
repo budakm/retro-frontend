@@ -7,7 +7,7 @@ node {
     }
 
     stage('Populate Envs') {
-        sh "echo VUE_APP_WEBSOCKET_URI=ws://retro-socket-dev.workmatik.com > .env.production"
+        sh "echo VUE_APP_WEBSOCKET_URI=wss://retro-socket-dev.workmatik.com > .env.production"
         sh "echo VUE_APP_API_URI=https://retro-api-dev.workmatik.com >> .env.production"
     }
 
