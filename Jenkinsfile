@@ -7,8 +7,8 @@ node {
     }
 
     stage('Populate Envs') {
-        sh "echo VUE_APP_WEBSOCKET_URI=ws://18.132.36.78:46992 > .env.production"
-        sh "echo VUE_APP_API_URI=http://18.132.36.78:46991 >> .env.production"
+        sh "echo VUE_APP_WEBSOCKET_URI=ws://retro-socket-dev.workmatik.com > .env.production"
+        sh "echo VUE_APP_API_URI=https://retro-api-dev.workmatik.com >> .env.production"
     }
 
     stage('Build and Push Docker Image') {
